@@ -1,0 +1,264 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=letter, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+\usepackage{anysize}
+\marginsize{2cm}{2cm}{2cm}{2cm}
+\usepackage{sectsty}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+
+
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+
+\allsectionsfont{\centering \normalfont\scshape} 
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{SIGLA-Sistemas de Información geográfica Libre y Abierto} \\ [20pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Instalación y desinstalación de R en GNU/Linux \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Edda Camila Rodríguez Mojica} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	INSTALACION DE R EN LINUX
+%----------------------------------------------------------------------------------------
+
+\section{Introducción}
+
+\subsection{ Objetivos del documento}
+\begin{itemize}
+\item Exponer al usuario los procedimientos de instalación de R en GNU/Linux, a través del código fuente y de comandos básicos en la consola.
+\item Mostrar la forma de desintalar R cuando se considere necesario. 
+\end{itemize}
+
+\subsection{¿Qué es R?}
+
+R es un lenguaje y un ambiente para informática estadística y es similar al lenguaje S desarrollado en Laboratorios Bell, por Jhon Chambers y sus colaboradores. R puede ser considerado como una implementación diferende de S, y aunque hay algunas diferencias, mucho código escrito en S corre adecuadamente en R.
+\\
+\\
+R provee una amplia gama de técnicas y gráficas estadísticas,  y es altamente extensible. El lenguaje S es a menudo el vehículo de investigación en metodología estadística, y R provee una ruta Open Source en esta actividad.
+\\
+\\
+R está disponible como Software Libre  bajo los terminos de la Licencia Publica General GNU de la Fundación de Softwate Libre (Free Software Foundation) en forma de código fuente. Este se sompila y corre en una amplia variedad de plataformas UNIX y sistemas similares (Windows, MacOs, FreeBSD, Linux). 
+
+
+\section{Enfoque de trabajo}
+
+El conocimiento del software R se expone con el fin de realizar análisis espacial. R a través de Sextante y otros SIG (como Quantum Gis o GvSIG) sirve para obtener gráficos y resultados que permiten realizar un análisis estadístico, geoestadístico y espacial. En los siguientes manuales observamos los paquetes que trabajaremos y conectaremos desde R con los SIG mencionados.   
+
+
+\section{Instalación de R}
+\subsection{Compilación simple} 
+
+\paragraph{Obtenga y desempaquete R:}
+
+Primero descargue la versión actualizada de R R-x.y.z.tar.gz a través de la página web        http://cran.r-project.org/ donde encontramos R-3.1.1.tar.gz, en la fecha actual.
+\\
+\\
+Escoja un directorio para instalar el árbol de R (R no es sólo un binario,  tiene datos adicionales, archivos de ayuda, métricas de fuente, etc). Llamaremos a este lugar  R\_ Home. 
+Descomprima el código fuente con el siguiente comando en el directorio de descarga y ubique ese dato en una carpeta(Para el tutor se denomina R\_ Home):
+\begin{verbatim}
+tar -xf R-3.1.1.tar.gz // 
+\end{verbatim}
+Hay otros sistemas en los que usted necesita tener gzip y puede utilizar las siguientes líneas:
+\begin{verbatim}
+gzip -dc R-x.y.z.tar.gz | tar -xf -
+\end{verbatim}
+El nombre de la ruta del directorio en el que el código es desempaquetado no debe contener espacios, porque la mayoria de los programas make (especificamente GNU make) no reciben espacios.
+\\
+
+si desea que el software sea usado por un grupo de usuarios, configure el umask antes de desempaquetar de tal manera que los archivos sean legibles por un grupo objetivo y guarde esta configuración mientras compila e instala.
+\\
+
+Si es un usuario reciente de una versión GNU de tar y hace esto como root, usted verá varios warnings sobre el el cambio de propiedad. En ese caso use el siguiente comando: 
+\begin{verbatim}
+tar --no-same-owner -xf R-x.y.z.tar.gz
+\end{verbatim}
+Para configurar las opciones puede dirigirse a la variable de entorno TAR\_ OPTIONS: si más de una opción es incluida debe separarlas con espacios).
+\\
+\\
+\paragraph{Revisión de elementos necesarios en el sistema:}
+
+Es necesario que revise las herramientas, librerias y programas esenciales que necesite su sistema operativo.  Asegurese que la variable TMPDIR  se encuentra bien definida (Además asegurese que /tmp existe, que tiene permisos de escritura y los scripts pueden ser ejecutados) o que los puntos de la ruta se orientan a un directorio temporal válido (que permite la ejecución de scripts) que no contiene espacios. 
+\\
+Para conocer si /tmp tiene permisos de escritura, escriba en la consola:
+\begin{verbatim}
+1. cd /
+
+2. ls -l
+
+3 cd
+
+\end{verbatim}
+Cuando escriba la segunda línea, observe que la carpeta /tmp tiene las letras rwx en la primera columna. 
+\\
+
+\paragraph{Instalación:}
+
+Cuando desempaqueta R se deben crear directorios src, doc y más. Ubiquese en la carpeta del código (En el caso del tutor R\_ Home->R.3.1.1) en la consola y escriba las siguientes líneas:
+\begin{verbatim}
+uname -m // que servirá para saber la arquitectura 32 o 64 bits
+./configure // si es de 64 bits utilice ./configure LIBnn=lib
+make
+\end{verbatim}
+Chequeé la compilación a través de la siguiente línea:
+
+\begin{verbatim}
+make check
+\end{verbatim}
+Los fallos no son necesariamente problemas si son causados por falta de funcionalidad, pero debe ser cuidadoso su hay discrepancias reportadas. Un fallo en test/ok-errors.R indica un inadecuado límite de recurso (Vea "corriendo R").
+\\
+\\
+Un examen más comprensivo que puede ser realizado con estas líneas:
+\begin{verbatim}
+make check-devel
+o
+make check-all
+\end{verbatim}
+
+Si los comandos configure y make se ejecutan existosamente, un script llamado R será creado  y copiado a R\_ Home/bin. Usted puede conectarse o copiar este script a un lugar donde los usuarios puedan invocarlo, por ejemplo  a  /usr/local/bin/R. Puede copiar la página del manual R.1 al lugar donde el lector pueda encontrarlo, como a /usr/local/man/man1. Si quiere instalar el árbol completo de R, vea instalación. 
+\\
+\\
+Nota: Usted no necesita instalar R, es decir puede utilizarlo desde donde fue compilado.
+
+Para compilarlo se pueden utilizar las siguientes líneas de comandos:
+\begin{verbatim}
+cd BUILDDIR
+TOP\_ SRCDIR/configure
+make
+\end{verbatim}
+ 
+A pesar de que se puede realizar la compilación se considera presentar la manera de instalar el programa, para lo cual escribimos:
+\begin{verbatim}
+make install // Recuerde que debe estar como root
+\end{verbatim}
+
+
+Por último evalúe la instalación con :
+\begin{verbatim}
+make install-tests
+\end{verbatim}
+
+
+\subsection{Instalación básica:}
+
+Los paquetes para la base del sistema hacen parte de Debian desde 1997, gracias a Douglas Bates, y son mantenidos diligentemente por Dirk Eddelbuettel desde 2001. R, como varios paquetes agregados están disponibles por medio de los mecanismos regulares de Debian. Por lo cual, escribimos:
+
+\begin{verbatim}
+apt \'-' cache search \'^' r \- .\'*'
+\end{verbatim}
+  
+
+Agregue  en el archivo etc/apt/sources.list de su computador su cran favorito, qu en nuestro caso es el de Austria (Puede encontrar más cran-mirrors en http://cran.r-project.org/mirrors.html):
+\begin{verbatim}
+   deb http://cran.at.r-project.org/bin/linux/debian wheezy-cran3/
+ \end{verbatim} 
+Con una apropiada entrada en /etc/apt/sources.list, el lanzamiento más novedoso de R puede ser instalado usando el siguiente comando:
+\begin{verbatim}
+   apt-get update
+   apt-get install r-base r-base-dev
+ \end{verbatim} 
+Inmediatamente la consola le mostrará que se instalaran algunos paquetes sin verificaci´on, por lo que se sugiere realizar el proceso manualmente, teniendo en cuenta esta lista:
+\begin{verbatim}
+   r-cran-boot
+   r-cran-cluster
+   r-cran-class
+   r-cran-codetools
+   r-cran-foreign
+   r-cran-kernsmooth
+   r-cran-lattice
+   r-cran-mass
+   r-cran-matrix
+   r-cran-mgcv
+   r-cran-nlme
+   r-cran-nnet
+   r-cran-rmatrix
+   r-cran-rpart
+   r-cran-spatial
+   r-cran-survival
+\end{verbatim}   
+\section{Desinstalación de R}
+
+1. Para la instalación desde el código fuente escriba la siguiente línea, en el directorio donde se encuentra R:
+\begin{verbatim}
+make uninstall
+\end{verbatim}
+
+2. Para la instalación desde internet utilizamos los siguientes comandos:
+\begin{verbatim}
+aptitude uninstall  r base r-base-dev r-base-core
+\end{verbatim}
+ 
+
+\section{Los datos desconocidos de los comandos Linux utilizados}
+
+./configure:La mayor parte de paquetes contienen un script de autoconfiguración. Estos scripts reciben  el nombre "configure" o "config" y realizan una correspondencia entre las librerias del computador del usuario con esas requeridas por el programa, antes de la compilación del código fuente. Es importante señalar que estos scripts están diseñados para un interprete de línea de comando de un SO.
+
+Bueno pues todo esto tiene su por qué, la mayor parte de los paquetes se embarcan con un script de autoconfiguración y a estos scripts se les nombra configure [o config] se tiene un corto número de parámetros en existencia, de los que se disponen todos los scripts de configure, lo interesante de todo esto es que ocurre en términos de programa en programa. Y la característica principal de configure es tener valores especiales para la compilación que estructura configure.
+
+Ahora bien, la opción que desees estructurar para ejecutar el script de configure creará un archivo llamado makefile y el makefile constituye la base de compilación. Si configure falla no tendremos makefile.
+
+El Make se encarga de leer todos los makefiles que el script configure creó, estos archivos le dicen a make cuales archivos compilar y el orden que debe ser compilado, esto es muy importante, ya que podría haber cientos de archivos fuente.
+
+Cuando Make esté trabajando, presentará cada comando que esté ejecutando y todos los parámetros asociados con el.
+
+\section{Bibliografía}
+
+Todo fue obtenido en http://www.r-project.org/ y http://cran.r-project.org/
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
