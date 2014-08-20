@@ -1,0 +1,256 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+\usepackage{url}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{cite}
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\Curso} % Top left header
+\chead{\firstxmark} % Top center head
+\rhead{\Titulo} % Top right header
+\lfoot{\SIGLA} % Bottom left footer
+\cfoot{\lastxmark} % Bottom center footer
+\rfoot{Pagina\ \thepage\ de\ \protect\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	DATOS DEL DOCUMENTO
+%----------------------------------------------------------------------------------------
+
+\newcommand{\Titulo}{Instalaci\'on del entorno de bases de datos geogr\'aficas} % Titulo del Tema
+\newcommand{\Fecha}{Miércoles,\ Agosto\ 6,\ 2014} % Fecha de creacion
+\newcommand{\Curso}{POSTGRESQL/POSTGIS} % Curso/clase
+\newcommand{\Profesion}{Ing.\ Catastral\ y\ Geodesta} % Espacio para colocar hora
+\newcommand{\SIGLA}{SIGLA} % autor / pero se usa para poner el nombre del capitulo quedo como bien. 
+\newcommand{\Autor}{Wilmar Fernando Pineda Rojas} % Nombre de lautor
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\Curso:\ \Titulo}}\\
+\normalsize\vspace{0.1in}\small{Creado\ en\ \Fecha}\\
+\vspace{0.1in}\large{\textit{\Autor\ \\ \Profesion}}
+\vspace{3in}
+}
+
+\author{\textbf{\SIGLA}}
+\date{\today} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{¿Que es postgresql?}
+PostgreSQL es un sistema de administración de bases de datos objeto-relacionales basado en POSTGRES, Version 4.2, desarrollado en la Universisas de California en el departamentos de ciencia y computación de Berkeley. POSTGRES es pionero en muchos conceptos los cuales solo se presentaron en bases de datos comerciales tiempo después.
+
+PostgreSQL es un descendiente open-source del código original de Berkeley. Este soporta en gran parte los estándares del SQL y muchas otras características modernas:
+\begin{itemize}
+\item Consultas complejas
+\item laves foráneas
+\item disparadores
+\item vistas
+\item integridad transaccional
+\item control de concurrencia multiversión 
+\end{itemize}
+Además, PostgreSQL puede ser ampliado por el usuario de muchas maneras, por ejemplo mediante la adición de nuevos:
+\begin{itemize}
+\item Tipos de datos
+\item funciones
+\item operadores
+\item funciones de agregación 
+\item indices de métodos
+\item lenguajes procedimentales
+\end{itemize}
+Y debido su licencia, PostgreSQL puede ser utilizado, modificado y distribuido por cualquiera de forma gratuita para cualquier propósito, ya sea privado, comercial o académico.
+
+\section{Instalando Postgresql}
+En la actualidad existen diferentes maneras de instalar Postgresql, varia según la versión de sistema que se tenga y la arquitectura. 
+Pues bien este manual va encaminado a los sistemas GNU/Linux sin querer demeritar a los demás, pero es que sencillamente en esos sistemas
+es tan sencillo hacer la instalación que no representa ningún reto siquiera intentar hacer un manual del mismo. Igual las personas que 
+estén interesadas en instalar este en alguna otra plataforma también pueden buscar en documentación allí se encuentra todo lo que necesitan.\\
+Hecha la anterior aclaración es pertinente comenzar con el tema que concierne a este pequeño manual, dado que algunas persona quieren empezar con el tema de las bases de datos espaciales es necesario primero hacer la instalación del entorno de bases de datos. Para lo cual
+lo primero que se tiene que realizar es la instalación del servidor de base de datos y el cliente.
+\subsection{Instalando desde el código fuente}
+Esta es la forma mas compleja de instalar postgresql en sistemas GNU/Linux, porque implica varias tareas que no son de uso común entre los usuarios, pero finalmente tiene sus beneficios este tipo de instalación. Algunas de las ventajas son por ejemplo que no cambia de versiones la instalación de postgresql cuando se actualiza el sistema, ademas claro que se puede tener la versión que uno desee. Dicho esto comencemos.
+\subsubsection{Solucionando dependencias}
+Para que la compilación e instalación del código funcione se tienen que realizar una solución de dependencias, las cuales también son mencionadas en la documentación de Postgresql. En este caso se presenta el listado de las dependencias necesarias para la compilación y instalación, el nombre de los paquetes puede variar según la versión del sistema que se este utilizando. 
+Dependencias de Postgresql:
+\begin{itemize}
+\item GNU make en una versión igual o mayor a 3.8
+Para verificar la versión escribir \verb|make --version|
+\item Compilador de C en este caso \textit{gcc}
+\item Biblioteca GNU Readline 
+\item Liberia de compresión zlib  
+\end{itemize}
+Los siguientes paquetes son opcionales. Estos no son necesarios en la configuración por defecto, pero se necesitan cuando ciertas características quieren ser habilitadas, como se explica a continuación:\\
+\begin{itemize}
+\item Para construir el lenguaje de programación de servidor PL/Perl que necesita una instalación completa de Perl, incluyendo el libperl
+\item Para construir el lenguaje de programación de servidor PL/Python, necesita una instalación de Python con los archivos de cabecera y el módulo distutils.
+\item Para construir el lenguaje procedimental PL/Tcl, por supuesto necesita una instalación de Tcl.
+\end{itemize}
+las pruebas se realizaron en un servidor CEntOS 7 y estas dependencias se resolvieron con la instalación de algunos paquetes efectuada mediante la siguiente linea de comandos:\\
+\begin{lstlisting}[language=bash, frame=single]
+yum install -y pam* openldap* python-devel mod_ssl crypto-utils openssl*
+\end{lstlisting}
+Después de resolver estas dependencias tanto las indispensables como aquellas que no lo son, se procede con la instalación.
+\subsubsection{Compilación e instalación del código}
+Lo primero que se debe hacer es descargar y descomprimir el código fuente, para el caso de esta instalación vamos a usar la carpeta \verb|/usr/local/src|, este proceso implica los siguientes comandos estando como usuario \verb|root|.\\
+Ingresar al directorio dicho anteriormente:\\
+\begin{lstlisting}[language=bash, frame=single]
+cd /usr/local/src
+\end{lstlisting}
+Descargar el código:\\
+\begin{lstlisting}[language=bash, frame=single]
+wget http://ftp.postgresql.org/pub/source/v9.3.5/postgresql-9.3.5.tar.gz
+\end{lstlisting}
+Descomprimir el código:\\
+\begin{lstlisting}[language=bash, frame=single]
+tar -xvzf postgresql-9.3.5.tar.gz
+\end{lstlisting}
+ingresar al directorio que resulta:\\
+\begin{lstlisting}[language=bash, frame=single]
+cd postgresql-9.3.5
+\end{lstlisting}
+Configurar la compilación\\
+\begin{lstlisting}[language=bash, frame=single]
+./configure --prefix=/usr/local/postgres --libdir=/usr/lib64 --enable-nls
+--with-python --with-openssl --without-readline --with-pam --with-ldap
+\end{lstlisting}
+Compilar:\\
+\begin{lstlisting}[language=bash, frame=single]
+make
+\end{lstlisting}
+Y finalmente instalar\\
+\begin{lstlisting}[language=bash, frame=single]
+make install
+\end{lstlisting}
+si todos los pasos de este manual se han seguido correctamente no tendría que haber ningún problema en el proceso.\\
+\subsection{Instalación para la familia Red Hat incluye (Fedora y centos)}
+Las distribuciones generalmente alojan en sus repositorios binarios precompilados de este programa para el caso de la familia Red Hat se puede instalar con la siguiente instrucción:\\
+\begin{lstlisting}[language=bash, frame=single]
+yum install postgresql-server postgresql-client postgresql-contrib 
+postgresql-devel
+\end{lstlisting}
+Después de la instalación lo siguiente:\\
+\begin{lstlisting}[language=bash, frame=single]
+postgresql-setup initdb
+systemctl enable postgresql.service
+\end{lstlisting}
+\subsection{Instalación para Debian}
+En Debian el tema no cambia mucho, solo el nombre de los paquetes que para el caso serian los siguientes:\\
+\begin{lstlisting}[language=bash, frame=single]
+aptitude install postgresql-9.3 postgresql-client-9.3 postgresql-contrib-9.3 
+libpq-dev postgresql-server-dev-9.3
+\end{lstlisting}
+\subsection{Configurado Postgresql}
+La configuración de postgresql se hace principalmente para que el usuario postgres use la base de datos, definir la contraseña para el usuario postgresql y finalmente algunas configuraciones para que el usuario pueda hacer uso de la base de datos apropiadamente.\\
+Primero se añade al usuario postgres para que use la base de datos:\\
+\begin{lstlisting}[language=bash, frame=single]
+useradd postgres
+\end{lstlisting}
+Asignar la clave al usuario postgres\\
+\begin{lstlisting}[language=bash, frame=single]
+passwd postgres
+\end{lstlisting}
+Creación del directorio de datos del usuario postres y configuración para el acceso.\\
+\begin{lstlisting}[language=bash, frame=single]
+mkdir -p /var/pgsql/data
+\end{lstlisting}
+\begin{lstlisting}[language=bash, frame=single]
+chown postgres /var/pgsql/data
+\end{lstlisting}
+\begin{lstlisting}[language=bash, frame=single]
+export PGDATA=/var/pgsql/data
+\end{lstlisting}
+Cambiar al usuario postgres\\
+\begin{lstlisting}[language=bash, frame=single]
+su - postgres
+\end{lstlisting}
+crear una base de datos inicial para poder arrancar el servicio.\\
+\begin{lstlisting}[language=bash, frame=single]
+/usr/local/postgres/bin/initdb -E utf8 -U postgres -D /var/pgsql/data
+\end{lstlisting}
+\begin{lstlisting}[language=bash, frame=single]
+exit
+\end{lstlisting}
+\section{Instalando pgadmin3}
+pgadmin3 es un programa que permite realizar la administración de las bases de datos que tiene  alojadas el sistema postgresql de forma grafica, ademas al ser tan pequeño y sencillo es muy facil de instalar.
+\subsection{Instalación para Fedora}
+En fedora al igual que en la mayoria de los sitemas GNU/Linux solo es necesaria una linea ejecutada como usuario root,  la cual se muestra a cintinuacion:
+\begin{lstlisting}[language=bash, frame=single]
+yum -y install pgadmin3
+\end{lstlisting}
+\subsection{Instalación para Debian}
+Para realizar la Instalación del paquete pgadmin3 en debian es muy sencillo solo tenemos que ejecutar el siguiete comando como usuario root:
+\begin{lstlisting}[language=bash, frame=single]
+aptitude install pgadmin3
+\end{lstlisting}
+\section{Instalación postgis}
+\subsection{Instalación desde el código fuente}
+\subsection{Instalación para Fedora}
+\lipsum[9]
+\subsection{Instalación para Debian}
+\lipsum[10]
+%----------------------------------------------------------------------------------------
+
+\end{document}
