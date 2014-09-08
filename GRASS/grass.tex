@@ -1,0 +1,94 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----------------------------------------------------------------------------------------
+% PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+\documentclass{article}
+\usepackage{url}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{cite}
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\Curso} % Top left header
+\chead{\firstxmark} % Top center head
+\rhead{\Titulo} % Top right header
+\lfoot{\SIGLA} % Bottom left footer
+\cfoot{\lastxmark} % Bottom center footer
+\rfoot{Pagina\ \thepage\ de\ \protect\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+%----------------------------------------------------------------------------------------
+% DATOS DEL DOCUMENTO
+%----------------------------------------------------------------------------------------
+\newcommand{\Titulo}{Geographic Resources Analysis Support System: Primeros pasos} % Titulo del Tema
+\newcommand{\Fecha}{Miércoles,\ Septiembre\ 3,\ 2014} % Fecha de creacion
+\newcommand{\Curso}{GRASS} % Curso/clase
+\newcommand{\Profesion}{Ing.Ambiental} % Espacio para colocar hora
+\newcommand{\SIGLA}{SIGLA} % autor / pero se usa para poner el nombre del capitulo quedo como bien.
+\newcommand{\Autor}{Juan David Rondón Díaz} % Nombre de lautor
+%----------------------------------------------------------------------------------------
+% TITLE PAGE
+%----------------------------------------------------------------------------------------
+\title{
+\vspace{2in}
+\textmd{\textbf{\Curso:\ \Titulo}}\\
+\normalsize\vspace{0.1in}\small{Creado\ en\ \Fecha}\\
+\vspace{0.1in}\large{\textit{\Autor\ \\ \Profesion}}
+\vspace{3in}
+}
+\author{\textbf{\SIGLA}}
+\date{\today} % Insert date here if you want it to appear below your name
+%----------------------------------------------------------------------------------------
+\begin{document}
+\maketitle
+%----------------------------------------------------------------------------------------
+% TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+\newpage
+\tableofcontents
+\newpage
+\section{Descipción general}
+\subsection{¿Que es GRASS?}
+Geographic Reources Analysis Suppor Sustem, normalmente conocido como GRASS GIS, es un Sistema de Información Geográfica (SIG) usado para la administración de datos, procesamiento de imágenes, producción de gráficos, modelación espacial y visualización de varios tipos de datos. Es un programa libre (Open Source) y se encuentra bajo la licencia \textit{GNU General Public License (GPL)>=  2}. GRASS GIS es un proyecto oficial de la \textit{Open Source Geospatial Foundation}.
+
+\subsection{Características generales de GRASS GIS}
+GRASS GIS contienes cerca de 350 módulos para desplegar mapas e imágenes el montior así como en el papel; manipular datos raster y vector incluyendo \textbf{\textit{redes}} vector; procesamiento de datos de im\'agenes multiespectrales; y crear, administrar y almacenar datos espaciales. GRASS GIS ofrece una interfaz gráfica de usuario así como una sintaxis de línea de comandos para facilitar las operaciones. GRASS GIS sirve de interface con impresoras, plotters, digitalizadores, y bases de datos tanto para la generación de nuevos datos, así como la administración de información existente.
+
+%----------------------------------------------------------------------------------------
+\end{document}
