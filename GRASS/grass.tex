@@ -90,5 +90,51 @@ Geographic Reources Analysis Suppor Sustem, normalmente conocido como GRASS GIS,
 \subsection{Características generales de GRASS GIS}
 GRASS GIS contienes cerca de 350 módulos para desplegar mapas e imágenes el montior así como en el papel; manipular datos raster y vector incluyendo \textbf{\textit{redes}} vector; procesamiento de datos de im\'agenes multiespectrales; y crear, administrar y almacenar datos espaciales. GRASS GIS ofrece una interfaz gráfica de usuario así como una sintaxis de línea de comandos para facilitar las operaciones. GRASS GIS sirve de interface con impresoras, plotters, digitalizadores, y bases de datos tanto para la generación de nuevos datos, así como la administración de información existente.
 
+\subsection{Capacidades}
+\begin{itemize}
+\item Análisis Raster
+\item Análisis 3D-Raster (Voxel)
+\item Análisis Vector
+\item Análsis de datos puntuales
+\item Procesamiento de imágenes
+\item Análisis de MDT
+\item Geocoding
+\item Visualización
+\item Creación de mapas
+\item Soporte SQL
+\item Geoestadística
+\end{itemize}
+
+\section{Instalación}
+\subsection{GNU/Linux}
+A continuación se explica de manera breve la forma de instalación para algunas ditros de Linux.
+
+\subsubsection{Ubuntu}
+Ya que los binarios se encuentran disponibles de apt-synaptic. Simplemente desde el terminal es necesario ejecutar:
+
+\begin{lstlisting}[language=bash, frame=single]
+sudo apt-get install grass grass-doc
+\end{lstlisting}
+
+\subsubsection{Fedora}
+Gracias a Fedoraproject se tienen paquetes-RPM de versiones estables ya listas para instalar en sistemas Fedora:
+
+\begin{lstlisting}[language=bash, frame=single]
+yum install grass
+\end{lstlisting}
+
+\subsubsection{OpenSUSE}
+
+En primer lugar es necesario añadir el repositorio GEO que contiene los paquetes-RPM de GRASS entre otras herramientas del campo de la geomática, luego se refrescan los listados de repositorios en el computador y con esto ya se puede instalar. Para ello se debe ejecutar en la terminal:
+
+\begin{lstlisting}[language=bash, frame=single]
+sudo zypper ar \
+http://download.opensuse.org/repositories/Application:/Geo/openSUSE_12.3/ GEO
+sudo zypper refresh
+sudo zypper install grass
+\end{lstlisting}
+
+Es importante tener en cuenta que las instrucciones del cajón anterior resultan apropiadas para la versión 12.3 de OpenSUSE, si se tiene una versión diferente es necesario cambiar este numero en la instrucción por la que corresponda a la versión instalada.
+
 %----------------------------------------------------------------------------------------
 \end{document}
